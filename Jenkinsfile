@@ -5,21 +5,21 @@ pipeline {
             steps {
                 mail to:"joseph.stalin.peter@gmail.com", subject: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'", body: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"                   
                 withMaven(maven : 'Maven1') {
-                    sh 'mvn clean compile'
+                    bat 'mvn clean compile'
                 }
             }
         }
         stage ('Testing Stage') {
             steps {
                 withMaven(maven : 'Maven1') {
-                    sh 'mvn test'
+                    bat 'mvn test'
                 }
             }
         }
         stage ('Deployment Stage') {
             steps {
                 withMaven(maven : 'Maven1') {
-                    sh 'mvn deploy'
+                    bat 'mvn deploy'
                 }
             }
         }
